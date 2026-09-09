@@ -1,0 +1,105 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Befolkning på rutenett 1000 m - UML-modell - Objekttyper
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Objekttyper" {
+
+  class "BefolkningPåRuter1kmGrense" as BefolkningP_Ruter1kmGrense <<featureType>> {
+    + grense [1] : Kurve
+  }
+
+  class "BefolkningPåRuter5kmGrense" as BefolkningP_Ruter5kmGrense <<featureType>> {
+    + grense [1] : Kurve
+  }
+
+  class "BefolkningPåRuter250m" as BefolkningP_Ruter250m <<featureType>> {
+    + popTot [1] : Integer
+    + statistikkÅr [1] : Integer
+  }
+
+  class "BefolkningPåRuter250mGrense" as BefolkningP_Ruter250mGrense <<featureType>> {
+    + grense [1] : Kurve
+  }
+
+  abstract class SSB_Ruter250m <<featureType>> {
+    + område [1] : Flate
+    + ssbid250m [1] : Integer
+  }
+
+  abstract class SSB_Ruter1km <<featureType>> {
+    + område [1] : Flate
+    + ssbid1000M [1] : Integer
+  }
+
+  class "BefolkningPåRuter5km" as BefolkningP_Ruter5km <<featureType>> {
+    + popTot [1] : Integer
+    + popMal [0..1] : Integer
+    + popFem [0..1] : Integer
+    + popAve [0..1] : Real
+    + statistikkÅr [1] : Integer
+  }
+
+  abstract class SSB_Ruter5km <<featureType>> {
+    + område [1] : Flate
+    + ssbid5000M [1] : Integer
+  }
+
+  abstract class "BefolkningPåRuterGenEgenskaper" as BefolkningP_RuterGenEgenskaper <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + oppdateringsdato [0..1] : Date
+    + datauttaksdato [1] : Date
+    + opphav [1] : CharacterString
+  }
+
+  class "BefolkningPåRuter1km" as BefolkningP_Ruter1km <<featureType>> {
+    + popTot [1] : Integer
+    + popAve [0..1] : Real
+    + popFem [0..1] : Integer
+    + popMal [0..1] : Integer
+    + statistikkÅr [1] : Integer
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [1] : CharacterString
+  }
+}
+
+  SSB_Ruter250m <|-- BefolkningP_Ruter250m
+  BefolkningP_Ruter250m --> BefolkningP_Ruter250mGrense : befolkning250mRuterGrense [0..*]
+  BefolkningP_RuterGenEgenskaper <|-- SSB_Ruter250m
+  BefolkningP_RuterGenEgenskaper <|-- SSB_Ruter1km
+  SSB_Ruter5km <|-- BefolkningP_Ruter5km
+  BefolkningP_Ruter5km --> BefolkningP_Ruter5kmGrense : befolkning5kmRuterGrense [0..*]
+  BefolkningP_RuterGenEgenskaper <|-- SSB_Ruter5km
+  SSB_Ruter1km <|-- BefolkningP_Ruter1km
+  BefolkningP_Ruter1km --> BefolkningP_Ruter1kmGrense : befolkning1kmRuterGrense [0..*]
+
+@enduml
