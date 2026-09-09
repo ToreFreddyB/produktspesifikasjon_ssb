@@ -1,0 +1,10 @@
+metadataId: 38b714b5-6251-41df-8dd9-f0cde540ac03
+output_directory: produktspesifikasjon
+product_slug: befolkning_pa_rutenett
+updated: '2026-09-09'
+outputs: geopackage
+scopes:
+- name: UML-modell
+  url: https://sosi.geonorge.no/svn/SOSI/SOSI%20Del%203/SSB/BefolkningP%c3%a5Rutenett-20200101.xml
+  generator: xmi
+  description: ''
