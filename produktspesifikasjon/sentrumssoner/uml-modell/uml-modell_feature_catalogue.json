@@ -1,0 +1,192 @@
+[
+  {
+    "name": "Tettsted",
+    "description": "omr�de hvor det bor minst 200 personer, og avstanden mellom husene normalt ikke overstiger 50 meter (SSB)\n\nMerknad:\nHussamlinger som naturlig  h�rer med til tettstedet, tas med inntil en avstand p� 400 meter fra tettstedskjernen.",
+    "attributes": [
+      {
+        "name": "omr�de",
+        "type": "GM_MultiSurface",
+        "description": "objektets utstrekning",
+        "cardinality": "1"
+      },
+      {
+        "name": "tettstedId",
+        "type": "TettstedId",
+        "description": "unik identifikasjon av et tettsted i form av en 4-sifret kode eller et navn",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "TETTSTED_ID"
+        },
+        "attributes": [
+          {
+            "name": "tettstednummer",
+            "type": "CharacterString",
+            "description": "best�r av en 4-sifret kode\n\nMerknad: Det skal benyttes ledende nuller.",
+            "cardinality": "1",
+            "taggedValues": {
+              "SOSI_navn": "TETTSTEDNUMMER"
+            }
+          },
+          {
+            "name": "tettstednavn",
+            "type": "CharacterString",
+            "description": "navn p� tettsted bestemt av SSB",
+            "cardinality": "1",
+            "taggedValues": {
+              "SOSI_navn": "TETTSTEDNAVN"
+            }
+          }
+        ]
+      },
+      {
+        "name": "areal",
+        "type": "Real",
+        "description": "Areal i km2",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "AREAL_KM2"
+        }
+      },
+      {
+        "name": "totalBefolkning",
+        "type": "Integer",
+        "description": "Antall personer i tettstedet",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "TOTAL_BEFOLKNING"
+        }
+      },
+      {
+        "name": "befolkningsTetthet",
+        "type": "Real",
+        "description": "Befolkningstetthet (pers. per km2)",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "BEFOLKNINGS_TETTHET"
+        }
+      },
+      {
+        "name": "statistikk�r",
+        "type": "Integer",
+        "description": "angivelse av �rstallsversjon for statistikken",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "STATISTIKK�R"
+        }
+      }
+    ],
+    "abstract": false,
+    "relationships": {
+      "inheritance": [
+        "SOSI_Fellesegenskaper"
+      ],
+      "associations": []
+    },
+    "package": "Tettsted-20261001"
+  },
+  {
+    "name": "SOSI_Fellesegenskaper",
+    "description": "abstrakt objekttype som b�rer sentrale egenskaper som er anbefalt for bruk i produktspesifikasjoner.\n\nMerknad: Disse egenskapene skal derfor ikke modelleres inn i fagomr�demodeller.",
+    "attributes": [
+      {
+        "name": "identifikasjon",
+        "type": "Identifikasjon",
+        "description": "unik identifikasjon av et objekt",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "IDENT"
+        },
+        "attributes": [
+          {
+            "name": "lokalId",
+            "type": "CharacterString",
+            "description": "lokal identifikator av et objekt\n\nMerknad: Det er dataleverend�rens ansvar � s�rge for at den lokale identifikatoren er unik innenfor navnerommet.",
+            "cardinality": "1",
+            "taggedValues": {
+              "SOSI_navn": "LOKALID"
+            }
+          },
+          {
+            "name": "navnerom",
+            "type": "CharacterString",
+            "description": "navnerom som unikt identifiserer datakilden til et objekt, anbefales � v�re en http-URI\n\nEksempel: http://data.geonorge.no/SentraltStedsnavnsregister/1.0\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og m� v�re registrert i data.geonorge.no eller data.norge.no",
+            "cardinality": "1",
+            "taggedValues": {
+              "SOSI_navn": "NAVNEROM"
+            }
+          },
+          {
+            "name": "versjonId",
+            "type": "CharacterString",
+            "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans)",
+            "cardinality": "0..1",
+            "taggedValues": {
+              "SOSI_navn": "VERSJONID"
+            }
+          }
+        ]
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "tidspunkt for siste endring p� objektet\n\nMerknad:\nOppdateringsdato kan v�re forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode f�r disse legges inn i datasystemet (databasen).",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      },
+      {
+        "name": "kvalitet",
+        "type": "Posisjonskvalitet",
+        "description": "beskrivelse av kvaliteten p� stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "cardinality": "0..1",
+        "taggedValues": {
+          "SOSI_navn": "KVALITET"
+        },
+        "attributes": [
+          {
+            "name": "m�lemetode",
+            "type": "M�lemetode",
+            "description": "metode for m�ling i grunnriss (x,y), og h�yde (z) n�r metoden er den samme som ved m�ling i grunnriss",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "definition": "metode som ligger til grunn for registrering av posisjon\n\n\n-- Definition - -\nmethod on which registration of position is based",
+              "asDictionary": "true",
+              "codeList": "https://register.geonorge.no/sosi-kodelister/generelle-konsepter/4.5/m%C3%A5lemetodekode"
+            },
+            "taggedValues": {
+              "SOSI_navn": "M�LEMETODE"
+            }
+          },
+          {
+            "name": "n�yaktighet",
+            "type": "Integer",
+            "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+            "cardinality": "0..1",
+            "taggedValues": {
+              "SOSI_navn": "N�YAKTIGHET"
+            }
+          }
+        ]
+      },
+      {
+        "name": "opphav",
+        "type": "CharacterString",
+        "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\n\nMerknad:\nKan ogs� beskrive navn p� person og �rsak til oppdatering",
+        "cardinality": "0..1",
+        "taggedValues": {
+          "SOSI_navn": "OPPHAV"
+        }
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [
+        "SOSI_Objekt"
+      ],
+      "associations": []
+    },
+    "package": "Tettsted-20261001"
+  }
+]
