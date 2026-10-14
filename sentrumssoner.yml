@@ -1,0 +1,10 @@
+metadataId: b7b6a84e-de26-4c26-a6fb-81140c517b5b
+output_directory: produktspesifikasjon
+product_slug: sentrumssoner
+updated: '2026-10-14'
+outputs: geopackage
+scopes:
+- name: UML-modell
+  url: inputs/tettsteder/model.xmi
+  generator: xmi
+  description: ''
