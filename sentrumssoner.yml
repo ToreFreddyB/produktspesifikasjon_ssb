@@ -5,6 +5,6 @@ updated: '2026-10-14'
 outputs: geopackage
 scopes:
 - name: UML-modell
-  url: inputs/sentrumssoner/model.xmi
+  url: https://sosi.geonorge.no/svn/SOSI/SOSI%20Del%203/SSB/Tettsted-20261001.xml
   generator: xmi
   description: ''
