@@ -1,10 +1,10 @@
 [
   {
     "name": "Tettsted",
-    "description": "omr�de hvor det bor minst 200 personer, og avstanden mellom husene normalt ikke overstiger 50 meter (SSB)\n\nMerknad:\nHussamlinger som naturlig  h�rer med til tettstedet, tas med inntil en avstand p� 400 meter fra tettstedskjernen.",
+    "description": "område hvor det bor minst 200 personer, og avstanden mellom husene normalt ikke overstiger 50 meter (SSB)\n\nMerknad:\nHussamlinger som naturlig  hører med til tettstedet, tas med inntil en avstand på 400 meter fra tettstedskjernen.",
     "attributes": [
       {
-        "name": "omr�de",
+        "name": "område",
         "type": "GM_MultiSurface",
         "description": "objektets utstrekning",
         "cardinality": "1"
@@ -21,7 +21,7 @@
           {
             "name": "tettstednummer",
             "type": "CharacterString",
-            "description": "best�r av en 4-sifret kode\n\nMerknad: Det skal benyttes ledende nuller.",
+            "description": "består av en 4-sifret kode\n\nMerknad: Det skal benyttes ledende nuller.",
             "cardinality": "1",
             "taggedValues": {
               "SOSI_navn": "TETTSTEDNUMMER"
@@ -30,7 +30,7 @@
           {
             "name": "tettstednavn",
             "type": "CharacterString",
-            "description": "navn p� tettsted bestemt av SSB",
+            "description": "navn på tettsted bestemt av SSB",
             "cardinality": "1",
             "taggedValues": {
               "SOSI_navn": "TETTSTEDNAVN"
@@ -66,12 +66,12 @@
         }
       },
       {
-        "name": "statistikk�r",
+        "name": "statistikkÅr",
         "type": "Integer",
-        "description": "angivelse av �rstallsversjon for statistikken",
+        "description": "angivelse av årstallsversjon for statistikken",
         "cardinality": "1",
         "taggedValues": {
-          "SOSI_navn": "STATISTIKK�R"
+          "SOSI_navn": "STATISTIKKÅR"
         }
       }
     ],
@@ -86,7 +86,7 @@
   },
   {
     "name": "SOSI_Fellesegenskaper",
-    "description": "abstrakt objekttype som b�rer sentrale egenskaper som er anbefalt for bruk i produktspesifikasjoner.\n\nMerknad: Disse egenskapene skal derfor ikke modelleres inn i fagomr�demodeller.",
+    "description": "abstrakt objekttype som bærer sentrale egenskaper som er anbefalt for bruk i produktspesifikasjoner.\n\nMerknad: Disse egenskapene skal derfor ikke modelleres inn i fagområdemodeller.",
     "attributes": [
       {
         "name": "identifikasjon",
@@ -100,7 +100,7 @@
           {
             "name": "lokalId",
             "type": "CharacterString",
-            "description": "lokal identifikator av et objekt\n\nMerknad: Det er dataleverend�rens ansvar � s�rge for at den lokale identifikatoren er unik innenfor navnerommet.",
+            "description": "lokal identifikator av et objekt\n\nMerknad: Det er dataleverendørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.",
             "cardinality": "1",
             "taggedValues": {
               "SOSI_navn": "LOKALID"
@@ -109,7 +109,7 @@
           {
             "name": "navnerom",
             "type": "CharacterString",
-            "description": "navnerom som unikt identifiserer datakilden til et objekt, anbefales � v�re en http-URI\n\nEksempel: http://data.geonorge.no/SentraltStedsnavnsregister/1.0\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og m� v�re registrert i data.geonorge.no eller data.norge.no",
+            "description": "navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI\n\nEksempel: http://data.geonorge.no/SentraltStedsnavnsregister/1.0\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no",
             "cardinality": "1",
             "taggedValues": {
               "SOSI_navn": "NAVNEROM"
@@ -129,7 +129,7 @@
       {
         "name": "oppdateringsdato",
         "type": "DateTime",
-        "description": "tidspunkt for siste endring p� objektet\n\nMerknad:\nOppdateringsdato kan v�re forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode f�r disse legges inn i datasystemet (databasen).",
+        "description": "tidspunkt for siste endring på objektet\n\nMerknad:\nOppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).",
         "cardinality": "1",
         "taggedValues": {
           "SOSI_navn": "OPPDATERINGSDATO"
@@ -138,16 +138,16 @@
       {
         "name": "kvalitet",
         "type": "Posisjonskvalitet",
-        "description": "beskrivelse av kvaliteten p� stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "description": "beskrivelse av kvaliteten på stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
         "cardinality": "0..1",
         "taggedValues": {
           "SOSI_navn": "KVALITET"
         },
         "attributes": [
           {
-            "name": "m�lemetode",
-            "type": "M�lemetode",
-            "description": "metode for m�ling i grunnriss (x,y), og h�yde (z) n�r metoden er den samme som ved m�ling i grunnriss",
+            "name": "målemetode",
+            "type": "Målemetode",
+            "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
             "cardinality": "1",
             "valueDomain": {
               "kind": "codelist",
@@ -156,16 +156,16 @@
               "codeList": "https://register.geonorge.no/sosi-kodelister/generelle-konsepter/4.5/m%C3%A5lemetodekode"
             },
             "taggedValues": {
-              "SOSI_navn": "M�LEMETODE"
+              "SOSI_navn": "MÅLEMETODE"
             }
           },
           {
-            "name": "n�yaktighet",
+            "name": "nøyaktighet",
             "type": "Integer",
             "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
             "cardinality": "0..1",
             "taggedValues": {
-              "SOSI_navn": "N�YAKTIGHET"
+              "SOSI_navn": "NØYAKTIGHET"
             }
           }
         ]
@@ -173,7 +173,7 @@
       {
         "name": "opphav",
         "type": "CharacterString",
-        "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\n\nMerknad:\nKan ogs� beskrive navn p� person og �rsak til oppdatering",
+        "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\n\nMerknad:\nKan også beskrive navn på person og årsak til oppdatering",
         "cardinality": "0..1",
         "taggedValues": {
           "SOSI_navn": "OPPHAV"

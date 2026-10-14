@@ -31,12 +31,12 @@ skinparam stereotypeCFontColor #2D201A
 package "Objekttyper" {
 
   class Tettsted <<featureType>> {
-    + omr�de [1] : GM_MultiSurface
+    + område [1] : GM_MultiSurface
     + tettstedId [1] : TettstedId
     + areal [1] : Real
     + totalBefolkning [1] : Integer
     + befolkningsTetthet [1] : Real
-    + statistikk�r [1] : Integer
+    + statistikkÅr [1] : Integer
   }
 
   abstract class SOSI_Fellesegenskaper <<featureType>> {
@@ -58,8 +58,8 @@ package "Objekttyper" {
   }
 
   class Posisjonskvalitet <<dataType>> {
-    + m�lemetode [1] : M�lemetode
-    + n�yaktighet [0..1] : Integer
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
   }
 }
 
